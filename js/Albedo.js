@@ -187,11 +187,9 @@ function eval(){
     var total_CRIT=(5+u_CRIT+CRIT)*0.01;
     var total_CRITd=(50+u_CRITd+CRITd)*0.01;
 
-    console.log(flower,skill,totalDEF);
-
     var model
-    =((burst+7*burst_flower*possibility_flower)*totalATK+120*totalDEF*DEF_flag)*(1+total_CRIT*total_CRITd)*(1+kizoku+u_burst)
-    +skill*flower*totalDEF*1.25*(1+(total_CRIT+fushoku_crit)*total_CRITd)*(1+fushoku_damage+bakuto);
+    =((burst+7*burst_flower*possibility_flower)*totalATK+120*totalDEF*DEF_flag*(1+7*possibility_flower))*(1+total_CRIT*total_CRITd)*(1+kizoku+u_burst)
+    +skill*flower*totalDEF*1.125*(1+(total_CRIT+fushoku_crit)*total_CRITd)*(1+fushoku_damage+bakuto);
 
     return model*(1+0.01*(u_geo+geo));
 }
@@ -251,6 +249,11 @@ if($("#weapon").val()=="fushoku"){
     baseATK+=510;
     fushoku_crit=0.06+0.015*(weapon_rank-1);
     fushoku_damage=0.16+0.04*(weapon_rank-1);
+}
+if($("#weapon").val()=="spin"){
+    baseATK+=454;
+    u_DEFrate+=69;
+    skill+=40+10*(weapon_rank-1);
 }
 
 

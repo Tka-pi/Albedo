@@ -187,11 +187,15 @@ function eval(){
     var total_CRIT=(5+u_CRIT+CRIT)*0.01;
     var total_CRITd=(50+u_CRITd+CRITd)*0.01;
 
-    var model
-    =((burst+7*burst_flower*possibility_flower)*totalATK+120*totalDEF*DEF_flag*(1+7*possibility_flower))*(1+total_CRIT*total_CRITd)*(1+kizoku+u_burst)
-    +skill*flower*totalDEF*1.125*(1+(total_CRIT+fushoku_crit)*total_CRITd)*(1+fushoku_damage+bakuto);
+    var buff_burst=kizoku+u_burst+0.01*(u_geo+geo);
+    var buff_skill=fushoku_damage+bakuto;
 
-    return model*(1+0.01*(u_geo+geo));
+    var model
+    =((burst+7*burst_flower*possibility_flower)*totalATK+120*totalDEF*DEF_flag*(1+7*possibility_flower))
+    *(1+total_CRIT*total_CRITd)*(1+buff_burst)
+    +skill*flower*totalDEF*1.125*(1+(total_CRIT+fushoku_crit)*total_CRITd)*(1+buff_skill);
+
+    return model;
 }
 
 
@@ -312,6 +316,7 @@ for (var r1=0 ; r1<C1 ; r1++){
                         ev=eval();
                     }
                     if(relic_type==2&&series%(7**4)==0){
+                        ATKrate+=20;
                         ev=eval();
                     }
                     if(relic_type==3&&series%(11**4)==0){

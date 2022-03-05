@@ -185,6 +185,9 @@ function eval(){
     var totalATK=baseATK*(1+(ATKrate+u_ATKrate)*0.01)+ATK;
     var totalDEF=baseDEF*(1+(DEFrate+u_DEFrate)*0.01)+DEF;
     var total_CRIT=(5+u_CRIT+CRIT)*0.01;
+    if(total_CRIT>=1){
+        total_CRIT=1;
+    }
     var total_CRITd=(50+u_CRITd+CRITd)*0.01;
 
     var buff_burst=kizoku+u_burst+0.01*(u_geo+geo);
